@@ -19,6 +19,6 @@ COPY --from=base $VIRTUAL_ENV $VIRTUAL_ENV
 COPY .env .env
 COPY ./app ./app
 
-EXPOSE 8000
+EXPOSE 5555
 #CMD ["uvicorn", "app.application:get_app", "--host", "0.0.0.0", "--port", "8000"]
 CMD ["gunicorn", "-w", "1", "-k", "uvicorn.workers.UvicornWorker", "application:get_app"]
