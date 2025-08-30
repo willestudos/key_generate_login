@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: loginkey-prod
     env:
-      IMAGE_NAME: gcr.io/loginkey/loginkey:latest
+      IMAGE_NAME: us-east1-docker.pkg.dev/loginkey/loginkey:latest
       PROJECT_ID: loginkey
     steps:
       # Git checkout
