@@ -56,7 +56,7 @@ name: Deploy to Cloud Run
 env:
   SERVICE_NAME: loginkey
   PROJECT_ID: loginkey
-  DOCKER_IMAGE_URL: us-east1-docker.pkg.dev/loginkey/loginkey:latest
+  DOCKER_IMAGE_URL: us-east1-docker.pkg.dev/loginkey/loginkey
 on:
   push:
     branches:
