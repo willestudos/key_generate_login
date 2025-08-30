@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: loginkey-prod
     env:
-      IMAGE_NAME: us-east1-docker.pkg.dev/loginkey:latest
+      IMAGE_NAME: us-east1-docker.pkg.dev/loginkey/loginkey:latest
     steps:
       # Git checkout
       - name: Checkout
