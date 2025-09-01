@@ -84,9 +84,12 @@ jobs:
           gcloud auth configure-docker us-east1-docker.pkg.dev
 
       - name: Build and Push Docker Image
+        env:
+          DOCKER_IMAGE_URL: us-east1-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE_NAME }}/${{ env.SERVICE_NAME }}
         run: |
-          docker build -t ${{ env.DOCKER_IMAGE_URL }}:latest -f Dockerfile .
-          docker push ${{ env.DOCKER_IMAGE_URL }}:latest
+          echo "A construir e a enviar para: $DOCKER_IMAGE_URL:latest"
+          docker build -t $DOCKER_IMAGE_URL:latest -f Dockerfile .
+          docker push $DOCKER_IMAGE_URL:latest
 
       - name: Deploy to Cloud Run
         run: |
