@@ -18,7 +18,9 @@ def get_app() -> FastAPI:
         description="Api para pegar dados via web com suporte OAuth 2.0",
         version=settings.version,
         openapi_url="/openapi.json",
-        debug=settings.debug
+        debug=settings.debug,
+        docs_url=None,
+        redoc_url=None,
     )
     LOGGER.info("Iniciando aplicação...")
     app.on_event("startup")(startup(on_application_startup))
