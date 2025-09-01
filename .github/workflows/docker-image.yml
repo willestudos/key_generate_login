@@ -62,9 +62,14 @@ on:
     branches:
       - main
 
+
 jobs:
   dockerize-and-deploy:
     runs-on: ubuntu-latest
+
+    # Definir a variável aqui torna-a disponível para todos os passos abaixo
+    env:
+      DOCKER_IMAGE_URL: us-east1-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE_NAME }}
 
     steps:
       - name: Checkout repository
@@ -84,17 +89,15 @@ jobs:
           gcloud auth configure-docker us-east1-docker.pkg.dev
 
       - name: Build and Push Docker Image
-        env:
-          DOCKER_IMAGE_URL: us-east1-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE_NAME }}/${{ env.SERVICE_NAME }}
         run: |
-          echo "A construir e a enviar para: $DOCKER_IMAGE_URL:latest"
-          docker build -t $DOCKER_IMAGE_URL:latest -f Dockerfile .
-          docker push $DOCKER_IMAGE_URL:latest
+          echo "A construir e a enviar para: ${{ env.DOCKER_IMAGE_URL }}:latest"
+          docker build -t ${{ env.DOCKER_IMAGE_URL }}:latest -f Dockerfile .
+          docker push ${{ env.DOCKER_IMAGE_URL }}:latest
 
       - name: Deploy to Cloud Run
         run: |
-          echo SERVICE_NAME $SERVICE_NAME
-          gcloud run deploy $SERVICE_NAME \
+          echo "A implementar a imagem: ${{ env.DOCKER_IMAGE_URL }}:latest"
+          gcloud run deploy ${{ env.SERVICE_NAME }} \
             --image ${{ env.DOCKER_IMAGE_URL }}:latest \
             --platform managed \
             --region us-east1 \
