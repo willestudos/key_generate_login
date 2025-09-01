@@ -101,6 +101,7 @@ jobs:
             --image ${{ env.DOCKER_IMAGE_URL }}:latest \
             --platform managed \
             --region us-east1 \
+            --platform managed
             --port 5555
             --set-env-vars FASTAPI_PORT=5555
             --allow-unauthenticated
