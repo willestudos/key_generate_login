@@ -69,7 +69,7 @@ jobs:
 
     # Definir a variável aqui torna-a disponível para todos os passos abaixo
     env:
-      DOCKER_IMAGE_URL: us-east1-docker.pkg.dev/loginkey/loginkey
+      DOCKER_IMAGE_URL: us-east1-docker.pkg.dev/loginkey/loginkey/loginkey
 
     steps:
       - name: Checkout repository
